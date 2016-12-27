@@ -1,0 +1,14 @@
+- name: APT | Installation
+  apt: name={{ item }}
+  with_items:
+    - apache2
+    - apache2-utils
+  when: ansible_pkg_mgr == "apt"
+
+- name: Enable common apache modules
+  apache2_module: name={{ item }}
+  with_items:
+    - ssl
+    - proxy
+    - rewrite
+
