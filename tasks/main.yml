@@ -12,3 +12,11 @@
     - proxy
     - rewrite
 
+- name: Enable default sites
+  file: state=link src={{ item.src }} path={{ item.dest }}
+  with_items:
+    - src: /etc/apache2/sites-available/default-ssl
+      dest: /etc/apache2/sites-enabled/000-default-ssl
+    - src: /etc/apache2/sites-available/000-default
+      dest: /etc/apache2/sites-enabled/000-default
+
