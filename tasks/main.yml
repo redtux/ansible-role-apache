@@ -10,6 +10,7 @@
   with_items:
     - ssl
     - proxy
+    - proxy_fcgi
     - rewrite
 
 - name: Enable default sites
