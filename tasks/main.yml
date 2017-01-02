@@ -5,6 +5,13 @@
     - apache2-utils
   when: ansible_pkg_mgr == "apt"
 
+- name: APT | Installation of fcgid
+  apt: name={{ item }}
+  with_items:
+    - libapache2-mod-fcgid
+    - apache2-suexec-pristine
+  when: ansible_pkg_mgr == "apt" and ( use_perl or use_fcgid )
+
 - name: Enable common apache modules
   apache2_module: name={{ item }}
   with_items:
@@ -12,6 +19,17 @@
     - proxy
     - proxy_fcgi
     - rewrite
+    - filter
+    - deflate
+    - headers
+
+- name: Enable fcgid apache module
+  apache2_module: name={{ items }}
+  with_items:
+    - cgid
+    - fcgid
+    - suexec
+  when: use_perl or use_fcgid
 
 - name: Enable default sites
   file: state={% if item.create %}link{% else %}absent{% endif %} src={{ item.src }} path={{ item.dest }}
