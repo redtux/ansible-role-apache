@@ -6,3 +6,4 @@
 * apache_use_default_ssl: When set to true, the default vhost 000-default-ssl will be enabled
 * use_perl: When set to true, the modules cgid,fcgid and suexec will be installed
 * use_fcgid: When set to true, the modules cgid,fcgid and suexec will be installed
+* apache_mpm: Set the mpm module, that should be used (default: worker)
