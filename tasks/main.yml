@@ -55,3 +55,6 @@
   command: a2enmod mpm_{{ apache_mpm }}
   register: a2enmod_output
   changed_when: "\"Enabling module mpm_{{ apache_mpm }}.\" in a2enmod_output.stdout"
+
+- name: logrotate
+  copy: src=vhost dest=/etc/logrotate.d/vhost owner=root group=root mode=0644
